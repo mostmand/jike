@@ -1,4 +1,15 @@
-<h1>{{ tweet.tweet_text }}</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header" style="text-align: left; direction: ltr;">
+            @{{ tweet.user.username }}
+        </div>
+        <div class="card-body">
+            <p class="text">{{ tweet.tweet_text }}</p>
+        </div>
+    </div>
+{% endblock %}
 
 {#{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}#}
 {##}

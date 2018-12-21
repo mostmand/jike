@@ -1,10 +1,22 @@
-<h1>توییت خود را وارد نمایید</h1>
+{% extends 'base.html' %}
+{% block content %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="">توییت خود را وارد نمایید</h1>
+        </div>
+        <div class="card-body">
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="{% url 'twitter:submit' %}" method="post">
-{% csrf_token %}
-    <textarea name="tweet_text" id="tweet_text"></textarea>
-    <label for="tweet_text">متن توییت شما</label><br>
-<input type="submit" value="create">
-</form>
+            <form action="{% url 'twitter:submit' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="tweet_text">متن توییت شما</label><br>
+                    <textarea class="form-control" name="tweet_text" id="tweet_text"></textarea>
+                </div>
+                <div style="text-align: left">
+                    <input class="btn btn-success" type="submit" value="ارسال">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
