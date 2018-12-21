@@ -1,3 +1,9 @@
+.my-button {
+    border-radius: 0.25rem;
+    border: 1px solid #017bff;
+    overflow: hidden;
+}
+
 .title {
     color: black;
     font-size: 2rem;
