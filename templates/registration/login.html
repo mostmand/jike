@@ -6,9 +6,20 @@
     <div class="container container-fluid">
     <h2>Login</h2>
     <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="button" type="submit">Login</button>
+        <div class="container container-fluid">
+            {% csrf_token %}
+            <div class="row">
+                <input type="text" name="username" autofocus="" required="" id="id_username">
+            </div>
+            <div class="row">
+                <input type="password" name="password" required="" id="id_password">
+            </div>
+            <div class="row">
+                <button class="button" type="submit">
+                    Login
+                </button>
+            </div>
+        </div>
     </form>
     </div>
 {% endblock %}
