@@ -1,6 +1,7 @@
 .title {
     color: black;
     font-size: 2rem;
+    margin-right: 5px;
 }
 
 body{
@@ -36,4 +37,8 @@ body{
 
 .my-container{
     margin-top: 10px;
+}
+
+.my-button {
+    width: 5rem;
 }

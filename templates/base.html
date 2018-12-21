@@ -16,9 +16,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/twitter">توییت‌ها</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
         </ul>
         <ul class="navbar-nav col-sm-1">
             {% if user.is_authenticated %}
@@ -26,11 +23,11 @@
                     <a class="nav-link active">{{user}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}">خروج</a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">ورود</a>
                 </li>
             {% endif %}
         </ul>
