@@ -8,19 +8,16 @@
     <title>{% block title %}جیک جیک{% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-dark my-navbar">
         <ul class="navbar-nav col-sm-11">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Active</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">جیک جیک</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/twitter">توییت‌ها</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>
         <ul class="navbar-nav col-sm-1">
@@ -38,7 +35,7 @@
             {% endif %}
         </ul>
     </nav>
-    <main class="container container-fluid">
+    <main class="container container-fluid my-container">
         {% block content %}
         {% endblock %}
     </main>

@@ -1,10 +1,39 @@
-.my-button {
-    border-radius: 0.25rem;
-    border: 1px solid #017bff;
-    overflow: hidden;
-}
-
 .title {
     color: black;
     font-size: 2rem;
+}
+
+body{
+    direction: rtl;
+    background-color: #fafafb;
+    text-align: right;
+    font-family: 'Yekan', sans-serif;
+}
+
+.my-navbar {
+    background-color: #178432;
+    color: white;
+    padding: 0;
+}
+
+.my-navbar .navbar-nav .nav-link {
+    color: white;
+    margin: 5px;
+}
+
+.my-navbar .navbar-nav .nav-link:hover {
+    color: black;
+}
+
+.my-navbar .navbar-nav .nav-item:hover {
+    background-color: #34a74e;
+}
+
+@font-face {
+  font-family: 'Yekan';
+  src: url('/static/style/fonts/Yekan.woff');
+}
+
+.my-container{
+    margin-top: 10px;
 }
