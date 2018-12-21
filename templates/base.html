@@ -26,7 +26,7 @@
         <ul class="navbar-nav col-sm-1">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active">{{username}}}!</a>
+                    <a class="nav-link active">{{user}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
