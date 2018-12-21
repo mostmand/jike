@@ -2,12 +2,12 @@
 
 {% block content %}
     {% if latest_question_list %}
-        <a class="button btn btn-success" href="{% url 'twitter:create' %}">
-            ارسال توییت
-        </a>
-        <ul>
+        <div class="conatainer container-fluid">
+            <a class="button btn btn-success" href="{% url 'twitter:create' %}">
+                ارسال توییت
+            </a>
             {% for tweet in latest_question_list %}
-                <li class="card">
+                <div class="card">
                     <div class="card-header">
                         {{ tweet.user.username }}
                     </div>
@@ -19,9 +19,9 @@
                             </a>
                         </div>
                     </div>
-                </li>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <p>No tweets are available.</p>
     {% endif %}

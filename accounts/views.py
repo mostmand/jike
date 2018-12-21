@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
 
+from accounts.forms import UploadPhotoForm
 from accounts.models import ExtendedUser
 
 
@@ -20,5 +21,31 @@ def register(request):
     return HttpResponseRedirect('/accounts/login')
 
 
-def index(request):
+def signup(request):
     return render(request, 'signup.html')
+
+
+def profile(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login')
+    else:
+        user_info = ExtendedUser.objects.get(user_id=request.user.id)
+        photo_path = request.user.id
+
+
+def upload_photo(request):
+    if request.method == 'POST':
+        form = UploadPhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = UploadPhotoForm()
+    return render(request, 'upload.html', {'form': form})
+
+
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+

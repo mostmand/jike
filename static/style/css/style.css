@@ -14,7 +14,8 @@ body{
 .my-navbar {
     background-color: #178432;
     color: white;
-    padding: 0;
+    text-align: center;
+    padding: 0 2rem;
 }
 
 .my-navbar .navbar-nav .nav-link {
@@ -45,4 +46,18 @@ body{
 
 .left{
     text-align: left;
+}
+
+.card .card-header{
+    background-color: #178432;
+    border-top-right-radius: 0.75rem;
+    border-top-left-radius: 0.75rem;
+    color: whitesmoke;
+}
+
+.card{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 0;
+    border-radius: 0.75rem;
 }

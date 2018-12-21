@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark my-navbar">
-        <ul class="navbar-nav col-sm-11">
+        <ul class="navbar-nav ml-auto col-sm-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/">جیک جیک</a>
             </li>
@@ -17,7 +17,7 @@
                 <a class="nav-link" href="/twitter">توییت‌ها</a>
             </li>
         </ul>
-        <ul class="navbar-nav col-sm-1">
+        <ul class="navbar-nav mr-auto col-sm-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link active">{{user}}</a>
