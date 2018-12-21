@@ -42,3 +42,7 @@ body{
 .my-button {
     width: 5rem;
 }
+
+.left{
+    text-align: left;
+}

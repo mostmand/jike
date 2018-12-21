@@ -8,12 +8,12 @@
         <ul>
             {% for tweet in latest_question_list %}
                 <li class="card">
-                    <div class="card-header" style="text-align: left; direction: ltr;">
-                        @{{ tweet.user.username }}
+                    <div class="card-header">
+                        {{ tweet.user.username }}
                     </div>
                     <div class="card-body">
                         <p class="text">{{ tweet.tweet_text }}</p>
-                        <div style="text-align: left;">
+                        <div class="left">
                             <a class="button btn btn-success" href="{% url 'twitter:detail' tweet.id %}">
                                 برو به صفحه‌ی توییت
                             </a>
