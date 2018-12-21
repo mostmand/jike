@@ -1,3 +1,5 @@
+import uuid
+
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
@@ -6,6 +8,7 @@ from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
 
+from api.models import SessionV2
 from twitter.models import Tweet
 
 
@@ -25,6 +28,9 @@ def detail(request, tweet_id):
 
 
 def create(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/accounts/login')
+
     template = loader.get_template('twitter/create.html')
     return HttpResponse(template.render(request=request))
 
@@ -33,6 +39,9 @@ def create(request):
 
 
 def submit(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/accounts/login')
+
     if request.method == 'POST':
         tweet_text = request.POST['tweet_text']
         tweet = Tweet.objects.create(tweet_text=tweet_text, pub_date=timezone.now(), user_id=request.user.id)
@@ -40,3 +49,14 @@ def submit(request):
         return HttpResponseRedirect(reverse('twitter:index', args=()))
     else:
         return HttpResponseBadRequest()
+
+
+def api_key(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/accounts/login')
+
+    result = str(uuid.uuid4())
+    SessionV2.objects.filter(user_id=request.user.id).delete()
+    session = SessionV2.objects.create(user_id=request.user.id, auth_key=result, pub_date=timezone.now())
+    session.save()
+    return HttpResponse(result)
