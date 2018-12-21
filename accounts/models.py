@@ -6,4 +6,5 @@ class ExtendedUser(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    avatar = models.ImageField(upload_to='accounts/images', null=True)
 

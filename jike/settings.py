@@ -25,7 +25,7 @@ SECRET_KEY = 'x%4=-y=qad68q$-k6gwh%h(9o%)($-a3--o^-tfpqw-^g94x38'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,3 +128,7 @@ STATICFILES_DIRS = [os.path.join('', 'static')]
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+MEDIA_ROOT = '/home/mh/PycharmProjects/jike/media/'
+
+MEDIA_URL = '/media/'
