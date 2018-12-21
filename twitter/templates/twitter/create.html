@@ -1,0 +1,10 @@
+<h1>توییت خود را وارد نمایید</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'twitter:submit' %}" method="post">
+{% csrf_token %}
+    <textarea name="tweet_text" id="tweet_text"></textarea>
+    <label for="tweet_text">متن توییت شما</label><br>
+<input type="submit" value="create">
+</form>

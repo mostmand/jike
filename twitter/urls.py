@@ -8,4 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # ex: /polls/5/
     path('<int:tweet_id>/', views.detail, name='detail'),
+    # ex: /create
+    path('create', views.create, name='create'),
+    path('submit', views.submit, name='submit'),
 ]

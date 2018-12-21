@@ -1,7 +1,7 @@
 {% if latest_question_list %}
     <ul>
     {% for tweet in latest_question_list %}
-        <li><a href="{% url 'twitter:detail' tweet.id %}">{{ tweet.tweet_text }}</a></li>
+        <li><a href="{% url 'twitter:detail' tweet.id %}">@{{ tweet.user.username }}: {{ tweet.tweet_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
