@@ -11,4 +11,7 @@ urlpatterns = [
     # ex: /create
     path('create', views.create, name='create'),
     path('submit', views.submit, name='submit'),
+
+    # ex: /api_key
+    path('api_key', views.api_key, name='api_key'),
 ]
