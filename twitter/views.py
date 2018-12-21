@@ -25,6 +25,9 @@ def detail(request, tweet_id):
 
 
 def create(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/accounts/login')
+
     template = loader.get_template('twitter/create.html')
     return HttpResponse(template.render(request=request))
 
@@ -33,6 +36,9 @@ def create(request):
 
 
 def submit(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/accounts/login')
+
     if request.method == 'POST':
         tweet_text = request.POST['tweet_text']
         tweet = Tweet.objects.create(tweet_text=tweet_text, pub_date=timezone.now(), user_id=request.user.id)
