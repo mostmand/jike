@@ -17,6 +17,7 @@
                     جیک جیک سامانه‌ای برای تعامل با دیگران است که می‌توانید از API آن نیز استفاده کنید!
                 </p>
             </div>
+            {% if not user.is_authenticated %}
             <div>
                 <div class="form-group">
                     <a class="btn btn-success button my-button" href="/account/signup">
@@ -25,6 +26,7 @@
                     <a class="btn btn-success button my-button" href="{% url 'login' %}">ورود</a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
