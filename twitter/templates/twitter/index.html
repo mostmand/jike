@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if latest_question_list %}
-        <a class="button btn btn-primary" href="{% url 'twitter:create' %}">
+        <a class="button btn btn-success" href="{% url 'twitter:create' %}">
             ارسال توییت
         </a>
         <ul>
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <p class="text">{{ tweet.tweet_text }}</p>
                         <div style="text-align: left;">
-                            <a class="button btn btn-primary" href="{% url 'twitter:detail' tweet.id %}">
+                            <a class="button btn btn-success" href="{% url 'twitter:detail' tweet.id %}">
                                 برو به صفحه‌ی توییت
                             </a>
                         </div>
