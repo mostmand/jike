@@ -67,9 +67,5 @@ body{
     padding-top: 80%;
     height: 0;
     overflow: hidden;
+    background-size: cover;
 }
-
-/*.profile-photo-box {*/
-    /*width: 100%;*/
-    /*padding-top: 100%;*/
-/*}*/
