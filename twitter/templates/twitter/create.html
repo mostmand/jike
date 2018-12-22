@@ -9,8 +9,12 @@
             <form action="{% url 'twitter:submit' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
+                    <label for="tweet_title">عنوان توییت شما</label><br>
+                    <input type="text" class="form-control" name="title" required id="tweet_title"/>
+                </div>
+                <div class="form-group">
                     <label for="tweet_text">متن توییت شما</label><br>
-                    <textarea class="form-control" name="tweet_text" id="tweet_text"></textarea>
+                    <textarea class="form-control" name="tweet_text" required id="tweet_text"></textarea>
                 </div>
                 <div style="text-align: left">
                     <input class="btn btn-success" type="submit" value="ارسال">

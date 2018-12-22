@@ -35,6 +35,11 @@
                     <div>{{ user.email }}</div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-auto">
+                        <a class="button btn btn-success" href="{% url 'twitter:create' %}">
+                            ارسال توییت
+                        </a>
+                </div>
                     <div class="form-group">
                         <button class="btn btn-success" id="get_token_button">
                             ایجاد توکن امنیتی

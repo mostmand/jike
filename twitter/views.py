@@ -43,8 +43,9 @@ def submit(request):
         return HttpResponseRedirect('/accounts/login')
 
     if request.method == 'POST':
+        tweet_title = request.POST['title']
         tweet_text = request.POST['tweet_text']
-        tweet = Tweet.objects.create(tweet_text=tweet_text, pub_date=timezone.now(), user_id=request.user.id)
+        tweet = Tweet.objects.create(title=tweet_title, tweet_text=tweet_text, pub_date=timezone.now(), user_id=request.user.id)
         tweet.save()
         return HttpResponseRedirect(reverse('twitter:index', args=()))
     else:
