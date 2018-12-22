@@ -10,4 +10,4 @@ urlpatterns = [
     path('signup/register', views.register),
     path('profile', views.profile),
     path('profile/upload_photo', views.upload_photo)
-] + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

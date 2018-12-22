@@ -42,7 +42,7 @@ def profile(request):
                 "last_name": user_info.last_name,
             }
             if user_info.avatar:
-                photo_path = user_info.avatar.path
+                photo_path = user_info.avatar.url
 
         context["photo_path"] = photo_path
 
