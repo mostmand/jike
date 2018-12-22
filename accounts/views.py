@@ -1,12 +1,13 @@
-import os
+import uuid
+
 from django.contrib.auth.models import User
-from django.contrib.staticfiles import finders
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render
+from django.utils import timezone
 
 from accounts.forms import UploadPhotoForm
 from accounts.models import ExtendedUser
-from jike.settings import BASE_DIR
+from api.models import SessionV2
 
 
 def register(request):
@@ -65,3 +66,9 @@ def upload_photo(request):
     return HttpResponseRedirect('/account/profile')
 
 
+def get_authentication_key(request):
+    result = str(uuid.uuid4())
+    SessionV2.objects.filter(user_id=request.user.id).delete()
+    session = SessionV2.objects.create(user_id=request.user.id, auth_key=result, pub_date=timezone.now())
+    session.save()
+    return HttpResponse(result)

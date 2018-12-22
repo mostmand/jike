@@ -34,8 +34,19 @@
                     <div class="col-sm-auto">ایمیل:</div>
                     <div>{{ user.email }}</div>
                 </div>
+                <div class="row">
+                    <div class="form-group">
+                        <button class="btn btn-success" id="get_token_button">
+                            ایجاد توکن امنیتی
+                        </button>
+                    </div>
+                </div>
+                <div class="row" id="token_area">
+
+                </div>
             </div>
         </div>
     </div>
-
+{% load static %}
+    <script src="{% static 'accounts/js/authentication.js' %}" type="application/javascript"></script>
 {% endblock %}
