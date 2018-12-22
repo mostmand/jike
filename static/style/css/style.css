@@ -41,7 +41,8 @@ body{
 }
 
 .my-button {
-    width: 5rem;
+    width: 10rem;
+    margin: 5px;
 }
 
 .left{

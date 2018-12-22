@@ -6,8 +6,8 @@
         <div class="card-header">
             {{ user.username }}
         </div>
-        <div class="card-body row">
-            <div class="col-sm-6">
+        <div class="card-body row justify-content-center">
+            <div class="col-sm-auto">
                 <div class="row justify-content-center">
                     <div style="background-image: url({{ photo_path }})" class="rounded-circle profile-photo">
                     </div>
@@ -16,37 +16,41 @@
                 <form method="post" action="/account/profile/upload_photo" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="file" name="photo" value="انتخاب عکس" accept="image/vnd.sealedmedia.softseal-jpg">
-                    <button type="submit" class="btn btn-success">آپلود عکس</button>
+                    <button type="submit" class="btn btn-success my-button">آپلود عکس</button>
                 </form>
                 </div>
             </div>
 
-            <div class="col-sm-auto align-content-center">
-                <div class="row">
-                    <div class="col-sm-auto">نام:</div>
-                    <div>{{ first_name }}</div>
+            <div class="col-sm-auto">
+                <div class="row justify-content-center">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>نام:</td>
+                                <td>{{ first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>نام خانوادگی:</td>
+                                <td>{{ last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>ایمیل:</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="row">
-                    <div class="col-sm-auto">نام خانوادگی:</div>
-                    <div>{{ last_name }}</div>
+
+                <div class="row form-group justify-content-center">
+                    <a class="button btn btn-success my-button" href="{% url 'twitter:create' %}">
+                        ارسال توییت
+                    </a>
+
+                    <a class="button btn btn-success text-white my-button" id="get_token_button">
+                        ایجاد توکن امنیتی
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-sm-auto">ایمیل:</div>
-                    <div>{{ user.email }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-auto">
-                        <a class="button btn btn-success" href="{% url 'twitter:create' %}">
-                            ارسال توییت
-                        </a>
-                </div>
-                    <div class="form-group">
-                        <button class="btn btn-success" id="get_token_button">
-                            ایجاد توکن امنیتی
-                        </button>
-                    </div>
-                </div>
-                <div class="row" id="token_area">
+                <div class="row justify-content-center" id="token_area">
 
                 </div>
             </div>
