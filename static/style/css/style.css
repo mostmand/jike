@@ -70,3 +70,8 @@ body{
     overflow: hidden;
     background-size: cover;
 }
+
+.sign-in-with-google-button{
+    width: 10rem;
+    height: 3rem;
+}
