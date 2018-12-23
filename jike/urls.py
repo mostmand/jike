@@ -21,6 +21,7 @@ from django.views.generic import TemplateView
 from jike import settings
 
 urlpatterns = [
+    path('auth/', include('social_django.urls', namespace='social')),
     path('twitter/', include('twitter.urls')),
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
