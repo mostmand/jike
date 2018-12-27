@@ -4,35 +4,43 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#178432" />
-    <link rel="stylesheet" type="text/css" href="{% static 'style/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'style/css/style.css' %}"/>
+    <script src="{% static 'style/js/jquery.min.js' %}"></script>
+    <script src="{% static 'style/js/popper.min.js' %}"></script>
+    <script src="{% static 'style/js/bootstrap.min.js' %}"></script>
     <meta charset="utf-8">
     <title>{% block title %}جیک جیک{% endblock %}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark my-navbar">
-        <ul class="navbar-nav ml-auto col-sm-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">جیک جیک</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/twitter">توییت‌ها</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto col-sm-auto">
-            {% if user.is_authenticated %}
+        <div class="navbar-brand">
+            <a class="nav-link" href="/">جیک جیک</a>
+        </div>
+        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto col-sm-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/account/profile">{{user}}</a>
+                    <a class="nav-link" href="/twitter">توییت‌ها</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">خروج</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">ورود</a>
-                </li>
-            {% endif %}
-        </ul>
+            </ul>
+            <ul class="navbar-nav mr-auto col-sm-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/profile">{{user}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">خروج</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">ورود</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </nav>
     <main class="container container-fluid my-container">
         {% block content %}

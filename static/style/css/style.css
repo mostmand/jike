@@ -75,3 +75,12 @@ body{
     width: 10rem;
     height: 3rem;
 }
+
+.navbar-brand .nav-link{
+    color: white;
+}
+
+.navbar-brand .nav-link:hover{
+    color: black;
+    background-color: #34a74e;
+}
