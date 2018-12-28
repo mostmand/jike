@@ -158,3 +158,5 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'S6xH2ZVmO23ZOSTLuC6AZxQi'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db.models import QuerySet
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -25,7 +26,7 @@ def register(request):
     user.save()
     extended_user.save()
 
-    return HttpResponseRedirect('/accounts/login')
+    return HttpResponseRedirect('/account/login')
 
 
 def signup(request):
@@ -82,7 +83,13 @@ def get_authentication_key(request):
 
 
 def send_email(user_email):
-    pass
+    send_mail(
+        'Account Alert',
+        'Your account may be in danger, please be careful',
+        'from@example.com',
+        [user_email],
+        fail_silently=False,
+    )
 
 
 def login_view(request):

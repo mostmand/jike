@@ -33,7 +33,7 @@ def detail(request, tweet_id):
 def create(request):
     log_ddos(request)
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/accounts/login')
+        return HttpResponseRedirect('/account/login')
 
     template = loader.get_template('twitter/create.html')
     return HttpResponse(template.render(request=request))
@@ -45,7 +45,7 @@ def create(request):
 def submit(request):
     log_ddos(request)
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/accounts/login')
+        return HttpResponseRedirect('/account/login')
 
     if request.method == 'POST':
         tweet_title = request.POST['title']
@@ -60,7 +60,7 @@ def submit(request):
 def api_key(request):
     log_ddos(request)
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/accounts/login')
+        return HttpResponseRedirect('/account/login')
 
     result = str(uuid.uuid4())
     SessionV2.objects.filter(user_id=request.user.id).delete()
