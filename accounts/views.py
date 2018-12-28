@@ -1,12 +1,13 @@
 import uuid
 
+from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
+from django.db.models import QuerySet
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
-
-from accounts.forms import UploadPhotoForm
-from accounts.models import ExtendedUser
+from accounts.forms import UploadPhotoForm, CaptchaForm
+from accounts.models import ExtendedUser, FailedLoginAttempts
 from api.models import SessionV2
 from ids.views import log_ddos
 
@@ -35,7 +36,7 @@ def signup(request):
 def profile(request):
     log_ddos(request)
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/accounts/login')
+        return HttpResponseRedirect('/account/login')
     else:
         user_info = ExtendedUser.objects.filter(user_id=request.user.id)
         context = {}
@@ -78,3 +79,61 @@ def get_authentication_key(request):
     session = SessionV2.objects.create(user_id=request.user.id, auth_key=result, pub_date=timezone.now())
     session.save()
     return HttpResponse(result)
+
+
+def send_email(user_email):
+    pass
+
+
+def login_view(request):
+    log_ddos(request)
+    if request.method == 'POST':
+        captcha_required = False
+        failed_attempts: QuerySet = FailedLoginAttempts.objects.filter(ip=get_client_ip(request))
+        if failed_attempts.exists():
+            if failed_attempts.count() > 15:
+                captcha_required = True
+
+        if captcha_required:
+            form = CaptchaForm(request.POST)
+            if not form.is_valid():
+                return HttpResponseRedirect('/account/login')
+
+        username = request.POST['username']
+        password = request.POST['password']
+        user_attempt = authenticate(request, username=username, password=password)
+        if user_attempt is not None:
+            login(request, user_attempt)
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/account/login')
+    else:
+        captcha_required = False
+        failed_attempts: QuerySet = FailedLoginAttempts.objects.filter(ip=get_client_ip(request))
+        if failed_attempts.exists():
+            if failed_attempts.count() > 15:
+                captcha_required = True
+            pass_mismatch_failed_attempts = failed_attempts.filter(user__isnull=False)
+            if pass_mismatch_failed_attempts.count() > 15:
+                user_email = pass_mismatch_failed_attempts.first().user.email
+                send_email(user_email)
+        if captcha_required:
+            form = CaptchaForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return render(request, 'registration/login.html')
+
+
+def logout_view(request):
+    log_ddos(request)
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

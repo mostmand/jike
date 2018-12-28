@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'social_django',
-    'ids'
+    'ids',
+    'captcha'
 ]
 
 MIDDLEWARE = [

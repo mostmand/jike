@@ -9,7 +9,7 @@
             <h2 class="row title">ورود</h2>
         </div>
         <div class="card-body">
-            <form class="row" method="post">
+            <form class="row" method="post" action="/account/login">
                 <div class="container container-fluid">
                     {% csrf_token %}
                     <div class="form-group">
@@ -20,6 +20,11 @@
                         <label for="id_password">رمز عبور</label>
                         <input class="form-control" type="password" name="password" required id="id_password">
                     </div>
+                    {% if form %}
+                    <div class="form-group">
+                       {{ form.captcha }}
+                    </div>
+                    {% endif %}
                     <div class="form-group left">
                         <a href="{% url 'social:begin' 'google-oauth2' %}">
                             <img class="sign-in-with-google-button" src="/static/style/images/btn_sign_in_google.png" alt="Sign in with google">

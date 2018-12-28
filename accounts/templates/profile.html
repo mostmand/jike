@@ -12,15 +12,15 @@
                     <div style="background-image: url({{ photo_path }})" class="rounded-circle profile-photo">
                     </div>
                 </div>
+                <form method="post" action="/account/profile/upload_photo" enctype="multipart/form-data">
                 <div class="row justify-content-center">
-                    <form method="post" action="/account/profile/upload_photo" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="file" name="photo" value="انتخاب عکس" accept="image/vnd.sealedmedia.softseal-jpg">
-                    </form>
                 </div>
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-success my-button">آپلود عکس</button>
                 </div>
+            </form>
             </div>
 
             <div class="col-sm-auto">

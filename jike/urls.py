@@ -25,7 +25,8 @@ urlpatterns = [
     path('twitter/', include('twitter.urls')),
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('account/', include('accounts.urls'), name='account'),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
