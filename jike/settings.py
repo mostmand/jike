@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'social_django',
+    'ids'
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+DDOS_N = 3
+DDOS_H = 10
+BRUTE_FORCE_N = 3
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

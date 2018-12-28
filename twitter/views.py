@@ -9,10 +9,12 @@ from django.urls import reverse
 from django.utils import timezone
 
 from api.models import SessionV2
+from ids.views import log_ddos
 from twitter.models import Tweet
 
 
 def index(request):
+    log_ddos(request)
     latest_tweets = Tweet.objects.order_by('-pub_date')[:10]
 
     template = loader.get_template('twitter/index.html')
@@ -23,11 +25,13 @@ def index(request):
 
 
 def detail(request, tweet_id):
+    log_ddos(request)
     tweet = get_object_or_404(Tweet, pk=tweet_id)
     return render(request, 'twitter/detail.html', {'tweet': tweet})
 
 
 def create(request):
+    log_ddos(request)
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/accounts/login')
 
@@ -39,6 +43,7 @@ def create(request):
 
 
 def submit(request):
+    log_ddos(request)
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/accounts/login')
 
@@ -53,6 +58,7 @@ def submit(request):
 
 
 def api_key(request):
+    log_ddos(request)
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/accounts/login')
 

@@ -8,9 +8,11 @@ from django.utils import timezone
 from accounts.forms import UploadPhotoForm
 from accounts.models import ExtendedUser
 from api.models import SessionV2
+from ids.views import log_ddos
 
 
 def register(request):
+    log_ddos(request)
     username = request.POST.get('username')
     password = request.POST.get('password')
     first_name = request.POST.get('first_name')
@@ -26,10 +28,12 @@ def register(request):
 
 
 def signup(request):
+    log_ddos(request)
     return render(request, 'signup.html')
 
 
 def profile(request):
+    log_ddos(request)
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/accounts/login')
     else:
@@ -51,6 +55,7 @@ def profile(request):
 
 
 def upload_photo(request):
+    log_ddos(request)
     if request.method == 'POST':
         form = UploadPhotoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -67,6 +72,7 @@ def upload_photo(request):
 
 
 def get_authentication_key(request):
+    log_ddos(request)
     result = str(uuid.uuid4())
     SessionV2.objects.filter(user_id=request.user.id).delete()
     session = SessionV2.objects.create(user_id=request.user.id, auth_key=result, pub_date=timezone.now())

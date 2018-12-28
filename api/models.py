@@ -13,3 +13,9 @@ class SessionV2(models.Model):
     auth_key = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField('date published')
+
+
+class failed_try(models.Model):
+    ip = models.CharField(max_length=15)
+    pub_date = models.DateTimeField('date published')
+
