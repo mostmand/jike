@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'jike.middlewares.middlewares.EduLikeMiddleware'
 ]
 
 ROOT_URLCONF = 'jike.urls'
