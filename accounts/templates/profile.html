@@ -13,9 +13,10 @@
                     </div>
                 </div>
                 <form method="post" action="/account/profile/upload_photo" enctype="multipart/form-data">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center custom-file">
                         {% csrf_token %}
-                        <input type="file" name="photo" value="انتخاب عکس" accept="image/vnd.sealedmedia.softseal-jpg">
+                        <input type="file" class="custom-file-input" name="photo" value="انتخاب عکس" accept="image/vnd.sealedmedia.softseal-jpg" id="customFile">
+                    <label class="custom-file-label" style="text-align: left" for="customFile">عکس خود را انتخاب کنید</label>
                 </div>
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-success my-button">آپلود عکس</button>
